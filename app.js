@@ -11,6 +11,7 @@ app.use('/webhook', line.middleware({
     channelAccessToken: process.env.LINE_ACCESS_TOKEN,
     channelSecret: process.env.LINE_CHANNEL_SECRET 
 }), (req, res) => {
+    console.log(JSON.stringify(req.body, null, 2));
     res.sendStatus(200);
 });
 
