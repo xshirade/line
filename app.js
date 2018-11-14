@@ -1,4 +1,5 @@
 const express = require('express');
+const async = require('async');
 const { middleware } = require("@line/bot-sdk");
 
 const app = express();
@@ -8,8 +9,8 @@ app.use('/webhook', middleware({
     channelAccessToken: process.env.LINE_ACCESS_TOKEN,
     channelSecret: process.env.LINE_CHANNEL_SECRET 
 }), (req, res) => {
-    Promise.all(req.body.events.map(eventHandler)).then(() => {
-        res.sendStatus(200);
+    async.map(req.body.events, eventHandler, (err, events) => {
+        err ? res.statusCode(500).send(err.toString()) : Promise.all(events).then(() => res.sendStatus(200))
     });
 });
 
