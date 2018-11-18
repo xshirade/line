@@ -1,9 +1,9 @@
 const express = require('express');
 const async = require('async');
-const line = require('./lib/line');
 
 const app = express();
-const eventHandler = require('./lib/eventHandler.js')
+const line = require('./lib/line');
+const eventHandler = require('./lib/eventHandler.js');
 
 app.use('/health', (req, res) => {
     res.sendStatus(200);
