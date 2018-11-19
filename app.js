@@ -1,6 +1,7 @@
 const express = require('express');
 const async = require('async');
 
+require('./lib/cron');
 const app = express();
 const line = require('./lib/line');
 const eventHandler = require('./lib/eventHandler.js');
